@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <form method="POST" action="/edit/{{data['page_name']}}">
-        <input type="text" value="{{data['page_name']}}" name="page_name" />
+    <form method="POST" action="/edit/{{page_name}}"></form>
+        <input type="text" value="{{page_name}}" name="page_name" rows = "40" cols = "100" />
         <textarea name="content">
-        {{data["content"]}}
+        content {{page_name}}
         </textarea>
-        {% if data["page_name"] == "" %}
+        {% if page_name  == "" %}
         <button type="submit">Create</button>
         {% else %}
         <button type="submit">Edit</button>

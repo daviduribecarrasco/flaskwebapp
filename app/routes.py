@@ -1,7 +1,7 @@
 from app import app
 from markdown import markdown
 from flask import render_template, render_template_string, request, session, flash, url_for, redirect
-from app.blog_helpers import render_markdown
+from app.blog_helpers import render_markdown,render_my_html
 import os
 from os import walk
 import flask
@@ -23,8 +23,18 @@ def all():
     for(dirpath, dirnames, filenames) in walk(r'C:\Users\David Uribe\Desktop\flask1.0\flaskwebapp\app\templates'):
         for file in filenames:
          view_data["pages"].append(file.rsplit(".",1)[0])
+       
+
     return render_template("all.html",data=view_data)        
 
+@app.route("/edit/<page_name>")
+def edit(page_name):
+
+    html = render_my_html(page_name+'.html')
+  
+    
+
+    return render_template('edit.html',page_name = html)
 
 
 
@@ -41,7 +51,7 @@ def login():
         
         error = ""
         if request.method == 'POST':
-            if request.form['user_name'] != 'admin' or request.form['password'] != 'admin' :
+            if request.form['user_name'] != 'du13' or request.form['password'] != 'hello123' :
                 error = 'Username or password is incorrect, try again please.'
             else:
                 session['logged_in'] = True
